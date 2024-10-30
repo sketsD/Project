@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* input{
+  background: red;
+} */
+
+#navBarElement .active,
+#sideBarElement .active {
+  @apply border-emerald-600 text-emerald-600;
+}
