@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import SideBarLink from "./SideBarLink";
 import Button from "./Button";
+import BoxArrowIcon from "../assets/svgs/BoxArrowIcon";
 
 type SmallScreenSideBar = {
   children: ReactNode;
@@ -27,7 +28,10 @@ export default function SmallScreenSideBar({ children }: SmallScreenSideBar) {
             <option value="en">English</option>
             <option value="uk">Українська</option>
           </select>
-          <Button type="secondary">Log in</Button>
+          <Button to="/" type="secondaryBlack" addedClass="hover:gap-6">
+            Log in
+            <BoxArrowIcon />
+          </Button>
         </div>
       </ul>
     </div>

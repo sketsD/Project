@@ -13,13 +13,17 @@ export default function NavBar() {
 
   return (
     <header>
-      <nav className="flex justify-between p-4 bg-emerald-400  w-full fixed z-50">
+      <nav className="flex justify-between p-4 bg-white  w-full fixed z-50 ">
         <div className="flex items-center">
           <Link
             to="/"
             className="text-3xl pr-10 font-medium underline cursor-pointer"
           >
-            DoLang
+            d
+            <span>
+              <span className="inline-block py-2 px-2 bg-emerald-400 rounded-full"></span>
+            </span>
+            Lang
           </Link>
           <div
             id="navBarElement"
@@ -42,8 +46,8 @@ export default function NavBar() {
           {/* darkMode */}
           <Button
             to="/login"
-            type="secondary"
-            addedClass="hidden lg:px-10 lg:flex lg:border-2 lg:border-black lg:text-black lg:py-2 hover:bg-white hover:gap-3"
+            style="colored"
+            addedClass="hidden lg:px-10 lg:flex lg:border-2 lg:border-black lg:text-black lg:py-2 hover:bg-white hover:gap-3 hover:pl-9"
           >
             <BoxArrowIcon />
             Log in

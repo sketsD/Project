@@ -14,8 +14,8 @@ export default function Header() {
             </h1>
             <Button
               to="/login"
-              type="main"
-              addedClass="justify-center mt-5 md:gap-10 lg:mr-20 hover:bg-stone-900 hover:text-white hover:gap-14"
+              style="secondaryBlack"
+              addedClass="mt-5 md:gap-10 lg:mr-20 hover:gap-14"
             >
               Get Started
               <ArrowRightIcon />
