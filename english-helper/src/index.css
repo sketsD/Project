@@ -11,8 +11,22 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
+.dark input:-webkit-autofill,
+.dark input:-webkit-autofill:hover,
+.dark input:-webkit-autofill:focus,
+.dark input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px rgb(19, 78, 74) inset !important;
+  -webkit-text-fill-color: white;
+}
 
 #navBarElement .active,
 #sideBarElement .active {
-  @apply border-emerald-600 text-emerald-600;
+  @apply border-emerald-600 text-emerald-600 dark:border-white dark:text-white;
 }
+
+/* slate-950 */
+/* teal-950 */
+/* footer bg-neutral-600  bg-gray-800 */
+/* emerald-600 */
+/* fields gray-600 */
+/* dark:bg-teal-900/90 dark:border-teal-950 */

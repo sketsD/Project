@@ -23,7 +23,7 @@ export default function ForgotPassword() {
 
   return (
     <div className="h-screen w-full mx-auto flex flex-col justify-center p-4 sm:w-1/2 lg:w-1/2 xl:w-1/3 2xl:w-1/4 ">
-      <div className="w-full border-b border-black">
+      <div className="w-full border-b border-black dark:border-white">
         <h2 className="font-bold text-2xl">Forgot your password ?</h2>
       </div>
 

@@ -1,4 +1,3 @@
-// import { type ReactNode } from "react";
 import { Link } from "react-router-dom";
 
 type linksNamesObjectType = {
@@ -102,15 +101,14 @@ const linksNamesObject: linksNamesObjectType = [
 export default function FooterBlock() {
   return linksNamesObject.map((block) => {
     return (
-      <div className="p-4">
+      <div key={block.topic} className="p-4">
+        {/* Key to be changed */}
         <h5 className="p-4 border-b mb-4 border-white">{block.topic}</h5>
         <ul className="flex flex-wrap gap-4 underline sm:block sm:space-y-2 sm:no-underline">
           {block.data.map((linkName) => (
-            <li>
+            <li key={linkName.name}>
               {/* Key to be changed */}
-              <Link key={linkName.name} to={linkName.to}>
-                {linkName.name}
-              </Link>
+              <Link to={linkName.to}>{linkName.name}</Link>
             </li>
           ))}
         </ul>

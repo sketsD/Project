@@ -12,7 +12,7 @@ export default function AppLayout() {
       <Cookie />
       <NavBar />
       {/* <main className="bg-stone-900"> */}
-      <main className="">
+      <main className="dark:text-white dark:bg-teal-950 duration-300">
         <Outlet />
       </main>
       <Footer />

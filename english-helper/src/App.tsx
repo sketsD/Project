@@ -14,6 +14,10 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfUse from "./pages/TermsOfUse";
 import SignupPage from "./features/user/SignupPage";
 import ForgotPassword from "./features/user/ForgotPassword";
+import Class from "./pages/Class";
+import { DarkModeProvider } from "./context/DarkModeContext";
+import { Provider } from "react-redux";
+import { store } from "./store";
 
 const router = createBrowserRouter([
   {
@@ -39,10 +43,20 @@ const router = createBrowserRouter([
       { path: "/privacypolicy", element: <PrivacyPolicy /> },
     ],
   },
+  {
+    element: <Class />,
+    path: "/cabinet",
+  },
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <DarkModeProvider>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    </DarkModeProvider>
+  );
 }
 
 export default App;

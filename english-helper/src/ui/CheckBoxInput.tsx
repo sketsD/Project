@@ -27,6 +27,7 @@ export default function CheckBoxInput({
   checked:bg-emerald-500 checked:border-0
   focus:outline-none focus:ring-offset-0 focus:ring-2 focus:ring-gray-100
   disabled:border-steel-400 disabled:bg-steel-400
+  dark:checked:bg-teal-900/90
 "
       />
       <label htmlFor={id}>{labelValue}</label>

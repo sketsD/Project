@@ -20,7 +20,7 @@ export default function PasswordField({
   const [isHidden, handlePasswordHidden] = useToggle(false);
   return (
     <div
-      className={`flex border-2 border-gray-150 rounded-md transition-all duration-200 hover:border-gray-400 focus:border-gray-400 ${
+      className={`flex border-2 border-gray-150 rounded-md bg-white duration-200 hover:border-gray-400 focus:border-gray-400 dark:bg-teal-900 dark:border-teal-950 ${
         isValid ? "border-red-500" : ""
       }`}
     >
@@ -30,9 +30,13 @@ export default function PasswordField({
         onChange={onChange}
         onBlur={onBlur}
         value={value}
-        className="w-[92%] px-4 py-2  outline-none rounded-md"
+        className="w-[92%] px-4 py-2 outline-none duration-200 rounded-md dark:bg-teal-900"
       />
-      <button type="button" onClick={handlePasswordHidden}>
+      <button
+        type="button"
+        className="dark:bg-teal-900 bg-white duration-200"
+        onClick={handlePasswordHidden}
+      >
         {isHidden ? <EyeSlash /> : <EyeOpen />}
       </button>
     </div>

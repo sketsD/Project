@@ -1,11 +1,20 @@
-import { useFormik } from "formik";
 import Button from "../../ui/Button";
 import PasswordField from "./PasswordField";
 import Label from "./Label";
-import { Link } from "react-router-dom";
+import { useFormik } from "formik";
+import { Link, useNavigate } from "react-router-dom";
+import { registerUser, registerArgs } from "../../services/signUpService";
 import * as Yup from "yup";
 
 export default function SignupPage() {
+  const navigate = useNavigate();
+  const hanldeSubmit = async function (values: registerArgs) {
+    await registerUser(values);
+    navigate("/login");
+  };
+
+  // const pass = "ospspspspsps&*/.22Q";
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -34,6 +43,7 @@ export default function SignupPage() {
         .required("Confirmation is required"),
     }),
     onSubmit: (values) => {
+      hanldeSubmit(values);
       alert(JSON.stringify(values, null, 2));
     },
   });
@@ -52,8 +62,8 @@ export default function SignupPage() {
     formik.touched.secondName && formik.errors.secondName ? true : false;
 
   return (
-    <div className="pt-24 h-screen w-full mx-auto flex flex-col justify-center p-4 sm:w-1/2 lg:w-1/2 xl:w-1/3 2xl:w-1/4 ">
-      <div className="w-full border-b border-black">
+    <div className="pt-24 min-h-fit h-screen w-full mx-auto flex flex-col justify-center p-4 sm:w-1/2 lg:w-1/2 xl:w-1/3 2xl:w-1/4 ">
+      <div className="w-full border-b border-black dark:border-white">
         <h2 className="font-bold text-2xl">Sign up</h2>
       </div>
 
@@ -79,7 +89,7 @@ export default function SignupPage() {
           onBlur={formik.handleBlur}
           value={formik.values.firstName}
           placeholder="Your first name"
-          className={`border-2 border-gray-150 px-4 py-2 rounded-md outline-none  transition-all duration-200 shadow-none hover:border-gray-400 focus:border-gray-400  ${
+          className={`border-2 border-gray-150 px-4 py-2 rounded-md outline-none  transition-all duration-200 shadow-none hover:border-gray-400 focus:border-gray-400 dark:bg-teal-900/90 dark:border-teal-950 ${
             firstNameValidation ? "border-red-500" : ""
           }`}
         />
@@ -94,7 +104,7 @@ export default function SignupPage() {
           onBlur={formik.handleBlur}
           value={formik.values.secondName}
           placeholder="Your second name"
-          className={`border-2 border-gray-150 px-4 py-2 rounded-md outline-none  transition-all duration-200 shadow-none hover:border-gray-400 focus:border-gray-400  ${
+          className={`border-2 border-gray-150 px-4 py-2 rounded-md outline-none  transition-all duration-200 shadow-none hover:border-gray-400 focus:border-gray-400 dark:bg-teal-900/90 dark:border-teal-950 ${
             secondNameValidation ? "border-red-500" : ""
           }`}
         />
@@ -105,11 +115,12 @@ export default function SignupPage() {
           type="text"
           id="email"
           name="email"
+          autoComplete="email"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.email}
           placeholder="Your email"
-          className={`border-2 border-gray-150 px-4 py-2 rounded-md outline-none  transition-all duration-200 shadow-none hover:border-gray-400 focus:border-gray-400  ${
+          className={`border-2 border-gray-150 px-4 py-2 rounded-md outline-none  transition-all duration-200 shadow-none hover:border-gray-400 focus:border-gray-400 dark:bg-teal-900/90 dark:border-teal-950 ${
             emailValidation ? "border-red-500" : ""
           }`}
         />
@@ -125,6 +136,7 @@ export default function SignupPage() {
           onBlur={formik.handleBlur}
           value={formik.values.password}
           placeholder="Your password"
+          autoComplete="new-password"
         />
 
         <Label htmlFor="confirmPassword" isValid={confirmPasswordValidation}>
@@ -140,6 +152,7 @@ export default function SignupPage() {
           onBlur={formik.handleBlur}
           value={formik.values.confirmPassword}
           placeholder="Confirm your password"
+          autoComplete="new-password"
         />
 
         <Button type="submit" style="colored" addedClass="h-12 w-full">

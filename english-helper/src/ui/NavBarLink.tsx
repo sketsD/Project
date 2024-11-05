@@ -8,7 +8,7 @@ type NavBarLinkProps = {
 export default function NanBarLink({ to, children }: NavBarLinkProps) {
   return (
     <NavLink
-      className="tracking-wide font-medium border-b border-transparent hover:border-emerald-600"
+      className="tracking-wide font-medium border-b border-transparent hover:border-emerald-600 dark:hover:border-white"
       to={to}
     >
       {children}
