@@ -5,13 +5,15 @@ import { useState } from "react";
 import Button from "./Button";
 import BoxArrowIcon from "../assets/svgs/BoxArrowIcon";
 import DarkModeToggle from "./DarkModeToggle";
-import { removeUser } from "../store/slices/userSlice";
 import { useAuth } from "../hooks/useAuth";
 import { useUserDispatch } from "../store/hooks";
+import { logOut } from "../store/slices/authSlice";
 
 export default function NavBar() {
   const dispatch = useUserDispatch();
   const userAuth = useAuth();
+  const fullName = userAuth.fullName;
+  const role = userAuth.role;
   const [isOpen, setIsOpen] = useState(false);
   function handleIsOpen() {
     setIsOpen((isOpen) => !isOpen);
@@ -23,7 +25,7 @@ export default function NavBar() {
         <div className="flex items-center">
           <Link
             to="/"
-            className="text-3xl pr-10 font-medium underline cursor-pointer"
+            className="text-3xl pr-10 font-medium underline cursor-pointer text-nowrap"
           >
             d
             <span>
@@ -31,6 +33,7 @@ export default function NavBar() {
             </span>
             Lang
           </Link>
+          ospspspspsps&*/.22Q <span> </span>
           <div
             id="navBarElement"
             className="hidden tracking-normal  space-x-8 lg:flex"
@@ -41,9 +44,9 @@ export default function NavBar() {
           </div>
         </div>
         <div className=" items-center gap-8 flex">
-          {/* <p>{firstName ? `${firstName}` : ""}</p> */}
-          <p>{userAuth.isAuth ? "user" : "no"}</p>
-          <button className="border-2" onClick={() => dispatch(removeUser())}>
+          <p>{fullName ? `${fullName}` : ""}</p>
+
+          <button className="border-2" onClick={() => dispatch(logOut())}>
             log Out
           </button>
           <DarkModeToggle />
@@ -56,7 +59,7 @@ export default function NavBar() {
             <option value="uk">Українська</option>
           </select>
           <Button
-            to={userAuth.isAuth ? "/cabinet" : "/login"}
+            to={userAuth.isAuth ? `/${role}-cabinet` : "/login"}
             style="colored"
             addedClass="hidden lg:px-10 lg:flex lg:border-2 lg:border-black lg:text-black lg:py-2 hover:bg-white hover:gap-3 hover:pl-9"
           >
@@ -72,7 +75,7 @@ export default function NavBar() {
             </div>
           </button>
           {isOpen && (
-            <SmallScreenSideBar>
+            <SmallScreenSideBar onOpen={handleIsOpen}>
               <button
                 onClick={handleIsOpen}
                 className="cursor-pointer z-50 absolute left-[92%] bottom-[97%]"

@@ -1,33 +1,37 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AppLayout from "./ui/AppLayout";
 import Home from "./ui/Home";
-import LoginPage from "./features/user/LoginPage";
+import LoginPage from "./features/auth/LoginPage";
+import SignupPage from "./features/auth/SignupPage";
+import ResetPassword from "./features/auth/ResetPassword";
 import BuisnessPage from "./features/buisness/BuisnessPage";
 import TutorPage from "./features/tutor/TutorPage";
 import FAQ from "./pages/FAQ";
 import Contacts from "./pages/Contacts";
 import Support from "./pages/Support";
 import AboutUs from "./pages/AboutUs";
-import Error from "./pages/Error";
+import PageNotFound from "./pages/PageNotFound";
 import CookiePolicy from "./pages/CookiePolicy";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfUse from "./pages/TermsOfUse";
-import SignupPage from "./features/user/SignupPage";
-import ForgotPassword from "./features/user/ForgotPassword";
-import Class from "./pages/Class";
 import { DarkModeProvider } from "./context/DarkModeContext";
 import { Provider } from "react-redux";
 import { store } from "./store";
+import ProtectedRoute from "./ui/ProtectedRoute";
+import SpinnerFullPage from "./ui/SpinnerFullPage";
+import AdminDashboard from "./features/admin/AdminDashboard";
+import TutorDashboard from "./features/tutor/TutorDashboard";
+import StudentDashboard from "./features/student/StudentDashboard";
 
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
-    errorElement: <Error />,
+    errorElement: <PageNotFound />,
     children: [
       { path: "/", element: <Home /> },
       { path: "/login", element: <LoginPage /> },
       { path: "/signup", element: <SignupPage /> },
-      { path: "/forgot_password", element: <ForgotPassword /> },
+      { path: "/reset_password", element: <ResetPassword /> },
 
       {
         path: "/buisness",
@@ -44,8 +48,28 @@ const router = createBrowserRouter([
     ],
   },
   {
-    element: <Class />,
-    path: "/cabinet",
+    element: (
+      <ProtectedRoute allowdRoles="tutor">
+        <TutorDashboard />
+      </ProtectedRoute>
+    ),
+    path: "/tutor-cabinet",
+  },
+  {
+    element: (
+      <ProtectedRoute allowdRoles="student">
+        <StudentDashboard />
+      </ProtectedRoute>
+    ),
+    path: "/student-cabinet",
+  },
+  {
+    element: (
+      <ProtectedRoute allowdRoles="admin">
+        <AdminDashboard />
+      </ProtectedRoute>
+    ),
+    path: "/admin-cabinet",
   },
 ]);
 
@@ -53,7 +77,7 @@ function App() {
   return (
     <DarkModeProvider>
       <Provider store={store}>
-        <RouterProvider router={router} />
+        <RouterProvider router={router} fallbackElement={<SpinnerFullPage />} />
       </Provider>
     </DarkModeProvider>
   );
