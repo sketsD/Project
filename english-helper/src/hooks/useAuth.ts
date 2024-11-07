@@ -1,11 +1,23 @@
 import { useUserSelector } from "../store/hooks";
+import { UserType } from "../store/slices/authSlice";
 
 export function useAuth() {
-  const { email, token, uid } = useUserSelector((state) => state.user);
+  const userData = useUserSelector((state) => state.auth.user) as UserType;
+  console.log(userData);
+  if (userData === null)
+    return {
+      isAuth: false,
+      role: null,
+      uid: null,
+      fullName: null,
+      email: null,
+    };
+  const { role, fullName, email, uid } = userData;
   return {
     isAuth: !!email,
-    email,
-    token,
+    role,
     uid,
+    fullName,
+    email,
   };
 }

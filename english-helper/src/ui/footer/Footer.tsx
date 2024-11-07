@@ -55,7 +55,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="flex mt-4 py-4 gap-3 px-4 flex-wrap sm:gap-10">
-          <p>© 2012-2024 Preply Inc.</p>
+          <p>© 2013-{`${new Date().getFullYear()}`} doLang Inc.</p>
           <span className="underline font-thin font-small">
             <Link to={""}>Legal Center</Link>
             <span className="mx-2"></span>

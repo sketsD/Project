@@ -24,7 +24,7 @@ function DarkModeProvider({ children }: DarkModeProviderProps) {
     } else {
       html.classList.remove("dark");
     }
-  });
+  }, [isDarkMode]);
   function toggleDarkMode(): void {
     setIsDarkMode((isDarkMode: boolean) => !isDarkMode);
   }
@@ -39,7 +39,7 @@ function DarkModeProvider({ children }: DarkModeProviderProps) {
 }
 function useDarkMode() {
   const context = useContext(DarkModeContext);
-  if (context === undefined)
+  if (context === null)
     throw new Error("Dark mode is used outside of the context");
   return context;
 }

@@ -13,7 +13,7 @@ export default function Label({
   return (
     <label
       {...labelProps}
-      className={`${isValid ? "text-red-500 " : "text-inherit"}`}
+      className={`${isValid ? "text-red-500/80 " : "text-inherit"}`}
     >
       {children}
     </label>

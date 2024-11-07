@@ -21,7 +21,7 @@ export default function PasswordField({
   return (
     <div
       className={`flex border-2 border-gray-150 rounded-md bg-white duration-200 hover:border-gray-400 focus:border-gray-400 dark:bg-teal-900 dark:border-teal-950 ${
-        isValid ? "border-red-500" : ""
+        isValid ? "border-red-500/40" : ""
       }`}
     >
       <input
