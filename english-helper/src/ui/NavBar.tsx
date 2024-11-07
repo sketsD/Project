@@ -4,16 +4,22 @@ import SmallScreenSideBar from "./SmallScreenSideBar";
 import { useState } from "react";
 import Button from "./Button";
 import BoxArrowIcon from "../assets/svgs/BoxArrowIcon";
+import DarkModeToggle from "./DarkModeToggle";
+import { removeUser } from "../store/slices/userSlice";
+import { useAuth } from "../hooks/useAuth";
+import { useUserDispatch } from "../store/hooks";
 
 export default function NavBar() {
+  const dispatch = useUserDispatch();
+  const userAuth = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   function handleIsOpen() {
     setIsOpen((isOpen) => !isOpen);
   }
 
   return (
-    <header>
-      <nav className="flex justify-between p-4 bg-white  w-full fixed z-50 ">
+    <header className="dark:text-white">
+      <nav className="flex justify-between p-4 bg-white duration-300 w-full fixed z-50 dark:bg-slate-950">
         <div className="flex items-center">
           <Link
             to="/"
@@ -21,7 +27,7 @@ export default function NavBar() {
           >
             d
             <span>
-              <span className="inline-block py-2 px-2 bg-emerald-400 rounded-full"></span>
+              <span className="inline-block duration-300 py-2 px-2 bg-emerald-400 rounded-full  dark:bg-teal-950"></span>
             </span>
             Lang
           </Link>
@@ -35,6 +41,12 @@ export default function NavBar() {
           </div>
         </div>
         <div className=" items-center gap-8 flex">
+          {/* <p>{firstName ? `${firstName}` : ""}</p> */}
+          <p>{userAuth.isAuth ? "user" : "no"}</p>
+          <button className="border-2" onClick={() => dispatch(removeUser())}>
+            log Out
+          </button>
+          <DarkModeToggle />
           <select
             name="language"
             id="language"
@@ -43,21 +55,20 @@ export default function NavBar() {
             <option value="en">English</option>
             <option value="uk">Українська</option>
           </select>
-          {/* darkMode */}
           <Button
-            to="/login"
+            to={userAuth.isAuth ? "/cabinet" : "/login"}
             style="colored"
             addedClass="hidden lg:px-10 lg:flex lg:border-2 lg:border-black lg:text-black lg:py-2 hover:bg-white hover:gap-3 hover:pl-9"
           >
             <BoxArrowIcon />
-            Log in
+            {userAuth.isAuth ? "My cabinet" : "Log in"}
           </Button>
 
           <button onClick={handleIsOpen}>
             <div className="lg:hidden space-y-2">
-              <span className="block h-0.5 w-8  bg-slate-900"></span>
-              <span className="block h-0.5 w-8  bg-slate-900"></span>
-              <span className="block h-0.5 w-8  bg-slate-900"></span>
+              <span className="block h-0.5 w-8  bg-slate-900 dark:bg-white"></span>
+              <span className="block h-0.5 w-8  bg-slate-900 dark:bg-white"></span>
+              <span className="block h-0.5 w-8  bg-slate-900 dark:bg-white"></span>
             </div>
           </button>
           {isOpen && (
@@ -67,8 +78,8 @@ export default function NavBar() {
                 className="cursor-pointer z-50 absolute left-[92%] bottom-[97%]"
               >
                 <div>
-                  <span className="block h-1 w-8 rotate-45 bg-gray-600"></span>
-                  <span className="block relative bottom-1 h-1 w-8 -rotate-45 bg-gray-600"></span>
+                  <span className="block h-1 w-8 rotate-45 bg-gray-600  dark:bg-white"></span>
+                  <span className="block relative bottom-1 h-1 w-8 -rotate-45 bg-gray-600 dark:bg-white"></span>
                 </div>
               </button>
             </SmallScreenSideBar>

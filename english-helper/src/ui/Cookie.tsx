@@ -8,7 +8,7 @@ export default function Cookie() {
 
   return (
     <div
-      className={`fixed z-[1000] w-screen bg-white/90 bottom-0 p-4 ${
+      className={`fixed z-[1000] w-screen bg-white/90 dark:bg-slate-950 dark:text-white bottom-0 p-4 duration-300 ${
         isCookieHidden ? " hidden" : ""
       }`}
     >

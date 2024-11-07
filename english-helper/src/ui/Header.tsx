@@ -5,7 +5,7 @@ import ArrowRightIcon from "../assets/svgs/ArrowRightIcon";
 
 export default function Header() {
   return (
-    <div className="bg-emerald-400 py-20 shadow-xl px-2">
+    <div className="duration-200 bg-emerald-400 py-20 shadow-xl px-2 dark:bg-teal-950">
       <AppFrame>
         <div className="flex gap-9 flex-col-reverse items-center pt-6 justify-center xl:justify-start lg:flex-row lg:items-stretch md:pt-14">
           <div className="basis-1/3 flex flex-col justify-around mx-5 lg:mx-1">

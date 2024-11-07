@@ -10,8 +10,8 @@ type SmallScreenSideBar = {
 export default function SmallScreenSideBar({ children }: SmallScreenSideBar) {
   return (
     <div className=" absolute w-screen h-screen top-0 left-0 flex z-40 ">
-      <div className="basis-0 backdrop-blur-sm bg-slate-200/30 md:basis-3/6"></div>
-      <ul className=" basis-full flex flex-col bg-slate-100 p-8 justify-between md:basis-3/6 ">
+      <div className="basis-0 backdrop-blur-sm bg-slate-200/30 md:basis-3/6 dark:bg-teal-950/50"></div>
+      <ul className=" basis-full flex flex-col bg-slate-100 p-8 justify-between md:basis-3/6 dark:bg-teal-950">
         <div className="relative">
           {children}
           <div
@@ -28,7 +28,7 @@ export default function SmallScreenSideBar({ children }: SmallScreenSideBar) {
             <option value="en">English</option>
             <option value="uk">Українська</option>
           </select>
-          <Button to="/" type="secondaryBlack" addedClass="hover:gap-6">
+          <Button to="/login" style="secondaryBlack" addedClass="hover:gap-6">
             Log in
             <BoxArrowIcon />
           </Button>

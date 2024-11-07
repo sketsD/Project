@@ -17,18 +17,24 @@ type ButtonProps = {
 const stylesMap = new Map([
   [
     "mainBlack",
-    "border-black bg-black text-white hover:bg-white hover:border-white hover:text-black",
+    "border-black bg-black text-white hover:bg-white hover:border-white hover:text-black dark:bg-slate-950 ",
   ],
   [
     "secondaryBlack",
-    "border-black bg-black hover:border-white hover:bg-stone-900 text-white",
+    "border-black bg-black text-white hover:border-white hover:bg-stone-900 dark:bg-slate-950 hover:bg-gray-800  ",
   ],
   [
     "mainWhite",
-    "border-white hover:text-white hover:bg-black hover:border-black",
+    "border-white hover:text-white hover:bg-black hover:border-black dark:hover:bg-slate-950",
   ],
-  ["secondaryWhite", "border-2 border-black text-black hover:bg-white "],
-  ["colored", "border-2 border-black text-black bg-emerald-400 hover:bg-white"],
+  [
+    "secondaryWhite",
+    "border-2 border-black text-black hover:bg-white dark:hover:bg-gray-800 dark:text-white dark:border-white",
+  ],
+  [
+    "colored",
+    "border-2 border-black text-black bg-emerald-400 hover:bg-white  dark:bg-teal-950 dark:border-white dark:text-white dark:hover:bg-slate-950",
+  ],
 ]);
 
 export default function Button({
@@ -37,12 +43,14 @@ export default function Button({
   addedClass,
   to,
   onClick,
+  ...buttonProps
 }: ButtonProps) {
   addedClass = addedClass === undefined ? "" : addedClass;
   const stylesBtn = stylesMap.get(style);
   if (to === undefined)
     return (
       <button
+        {...buttonProps}
         onClick={onClick}
         className={`flex items-center justify-center gap-2 rounded-lg font-medium  border transition-all duration-300 py-4 ${stylesBtn} ${addedClass}`}
       >

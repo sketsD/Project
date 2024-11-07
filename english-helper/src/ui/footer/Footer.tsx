@@ -11,9 +11,9 @@ const googleLink = "https://play.google.com/store/apps";
 
 export default function Footer() {
   return (
-    <footer className="bg-neutral-700 text-white mt-20">
+    <footer className="bg-neutral-600 text-white  dark:bg-teal-950  ">
       <AppFrame>
-        <div className="grid sm:grid-cols-3 xl:grid-cols-5 py-12">
+        <div className="grid sm:grid-cols-3 xl:grid-cols-5 py-12 dark:border-0 dark:border-t dark:border-white">
           <FooterBlock />
 
           <div className="sm:col-span-3 xl:col-span-2  p-4 ">
@@ -34,6 +34,8 @@ export default function Footer() {
             <div className="flex flex-wrap h-fit gap-2 mt-3">
               {SocialMedia.map((SocialMedia) => (
                 <Button
+                  // Key to be changed
+                  key={SocialMedia.link}
                   to={SocialMedia.link}
                   style="mainWhite"
                   addedClass="px-4"
